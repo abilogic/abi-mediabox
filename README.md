@@ -28,7 +28,6 @@ Thank you for your interest in my library. I look forward to getting feedback fr
 
 Regards
 Alexander Momot
-https://www.zombler.com
 
 # License
 

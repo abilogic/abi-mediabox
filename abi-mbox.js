@@ -727,58 +727,6 @@ class abi_mediaBox {
 
 			initOFFS -= prevDATA.length;
 
-            /*
-			return new Promise(function(resolve){
-				while( fPOS <= scanDATA.length - 4 ){
-					found = 1;
-					for( let i = 0; i < 4; i++ ){
-						byte = scanDATA[fPOS + i];
-						if(( byte == 32 ) || ( byte >=65 && byte <= 90 ) || ( byte >=97 && byte <= 122 )){
-
-						} else {
-							found = 0;
-							fPOS += i + 1;
-							break;
-						}
-					}
-					if( !found ){
-                        continue;
-					}
-					text = tDEC.decode(scanDATA.subarray(fPOS, fPOS + 4));
-					for( let i = 0; i < Atoms.length; i++ ){
-                    	name = Atoms[i];
-                        if( name == text ){
-							fSIZE = scanDATA.getUint32(fPOS - 4);
-							fOFFS = ( fSIZE == 1 ) ? 16 : 8;
-							if( fSIZE == 1 ){
-								fSIZE = scanDATA.getUint64(fPOS + 4);
-							}
-							if( fSIZE < 8 || fSIZE > __SELF.__DATA.fileSize ){
-								fSIZE = 8;
-							}
-							atoms = __SELF.__findATOMS(name);
-							fATM = new Atom();
-							fATM.name = name;
-							fATM.pos = initOFFS + fPOS - 4;
-							fATM.next = fSIZE + fATM.pos;
-							fATM.last = ( fATM.next >= __SELF.__DATA.fileSize );
-							fATM.size = fSIZE;
-							fATM.id = atoms.length;
-							fATM.data = new Uint8Array(ATOM_BUF_SIZE);
-							fATM.data.set(scanDATA.subarray(fPOS + 4).subarray(0,ATOM_BUF_SIZE));
-							fATM.data_offs = fOFFS;
-							__SELF.__DATA.ATOMS.push(fATM);
-
-							break;
-						}
-					}
-					fPOS += 4;
-				}
-				prevDATA = curDATA.subarray(curDATA.length-3);
-				resolve(1);
-			});
-            */
-
 			return new Promise(function(resolve){
 				Atoms.forEach(function(name){
 					scanTEXT.indexOfAll(name).forEach(function(fPOS){
@@ -1903,15 +1851,6 @@ class abi_mediaBox {
 						func_fill_data(0, offs_arr, function(){
 							__SELF.__DATA.OFFSETS = offs_arr;
 							funcDone();
-							/*
-							func_find_pattern(0, function(){
-								func_find_pattern(1, function(){
-									func_analyze(function(){
-										funcDone();
-									});
-								});
-							});
-							*/
 						});
 					});
 				});
